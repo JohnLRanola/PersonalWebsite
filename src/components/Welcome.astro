@@ -1,37 +1,24 @@
 ---
-import astroLogos from '../assets/astro.svg';
+import earthRotate from '../assets/earthRotate.gif';
 import maintenanceBG from '../assets/maintenanceBG.png';
 ---
 
 <div id="container">
 	<img id="background" src={maintenanceBG.src} alt="" fetchpriority="high" />
-	<!--<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogos.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				<code><pre>testing</pre></code> 
-			</h1>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
-	-->
+
+	<section id="hero">
+    <img id="earth-gif" src={earthRotate.src} width="600" height="550" alt="Earth Rotate" />
+    <h1>
+        <code><pre id="maintenance-title">Under Maintenance</pre></code>
+    </h1>
+	</section>
 
 	<!--
+	<section id="links">
+		<a class="button" href="https://docs.astro.build">Read our docs</a>
+		<a href="https://astro.build/chat">Join our Discord</a>
+	</section>
+
 	<a href="https://astro.build/blog/astro-6-beta/" id="news" class="box">
 		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
 			><path
@@ -61,7 +48,9 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
+		min-height: 100vh;
+		display: grid;
+		place-items: center;
 	}
 
 	main {
@@ -72,20 +61,42 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 
 	#hero {
 		display: flex;
-		align-items: start;
+		align-items: center;
 		flex-direction: column;
 		justify-content: center;
 		padding: 16px;
+		text-align: center;
 	}
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
+	#hero h1 {
+    margin: 0;
+    transform: translateY(-300px);
+	}
+
+	#maintenance-title {
+		font-family: 'Press Start 2P', ui-monospace, monospace;
+		font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+		line-height: 1.3;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+
+		/* override current gradient text look */
+		background: none;
+		-webkit-text-fill-color: #8bff7a;
+		color: #8bff7a;
+		animation: none;
+
+		/* chunky retro edge */
+		text-shadow:
+			2px 0 0 #111,
+			0 2px 0 #111,
+			2px 2px 0 #111;
 	}
 
 	#links {
 		display: flex;
 		gap: 16px;
+		justify-content: center;
 	}
 
 	#links a {
@@ -125,36 +136,33 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
 			monospace;
 		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+		background: linear-gradient(14deg, #f8f8f8 0%, #3bf75b 50%, #5aff4b 100%);
+		background-size: 200% 200%;
+		background-position: 0% 50%;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
+		animation: titleGradientShift 3s ease-in-out infinite;
 	}
 
 	code {
 		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
+		padding: 10px 18px;
+		border-radius: 0;              
+		border: 4px solid #111;
+		background: #6f63ff;           
+		box-shadow:
+			4px 0 0 #111,
+			0 4px 0 #111,
+			8px 4px 0 rgba(0, 0, 0, 0.35); 
+		clip-path: polygon(
+			0 4px, 4px 4px, 4px 0,
+			calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+			100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+			4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+		);
+		animation: titleFloat 2.4s ease-in-out infinite;
 	}
 
 	.box {
@@ -214,4 +222,35 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 			line-height: 1.5;
 		}
 	}
+
+	#earth-gif {
+		width: min(80vw, 600px); 
+		height: auto;            
+		object-fit: contain;
+	}
+
+	@media screen and (max-width: 768px) {
+		#earth-gif {
+			width: min(92vw, 600px);
+		}
+	}
+
+@keyframes titleGradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+@keyframes titleFloat {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	pre,
+	code {
+		animation: none;
+	}
+}
+
 </style>
