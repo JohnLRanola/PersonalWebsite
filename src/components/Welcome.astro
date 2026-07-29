@@ -42,10 +42,40 @@ const stars = Array.from({ length: 55 }, () => ({
 	</section>
 
 	<section id="scroll-content" aria-label="Scroll content">
-		<h2>Keep Scrolling</h2>
-		<p>
-			Space gets lighter. WOOHOO!
-		</p>
+		<h2>PROJECTS</h2>
+		<article class="project-feature-left">
+			<h3>PROJECT LILYPAD</h3>
+			<p>
+				<br />
+				I wanted a challenge that would push me to <span class="highlight-skill">design and develop a game</span>. So I did! I decided to make a game in <span class="highlight-tech">Unreal Engine 5</span> within <span class="highlight-metric">30 days</span> and to make it harder, I decided to make it a <span class="highlight-skill">community-driven game</span>,
+				using ideas and feedback gathered from <span class="highlight-platform">YouTube and TikTok comments</span>. 
+				<br />
+				The development series generated approximately <span class="highlight-metric">100,000 views</span> across social media and provided valuable experience 
+				in <span class="highlight-skill">rapid game development</span>, <span class="highlight-skill">community-driven design</span>, and <span class="highlight-tech">Unreal Engine 5</span>.
+
+			</p>
+			<a class="project-cta" href="/projects/lilypad" aria-label="View Project Lilypad case study page">
+				View Full Case Study
+			</a>
+		</article>
+
+		<article class="project-feature-left project-feature-right">
+			<h3>ANIMATIONS</h3>
+			<p>
+				<br />
+				These are a few of my <span class="highlight-skill">3D animations</span> that I created using <span class="highlight-tech">Blender</span>. 
+				I love making these as they allow me to just be goofy and express my love for animation.
+				<br />
+				These are inspired by games like <span class="highlight-platform">Animal Crossing</span> and <span class="highlight-platform">Tomodachi Life</span>, 
+				as well as my love for <span class="highlight-platform">Anime</span> especially <span class="highlight-platform">Studio Ghibli</span>.
+
+			</p>
+			<a class="project-cta" href="/projects/your-project" aria-label="View project details page">
+				View Full Case Study
+			</a>
+		</article>
+
+		
 	</section>
 
 	<!--
@@ -158,15 +188,116 @@ const stars = Array.from({ length: 55 }, () => ({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		align-items: flex-start;
 		gap: 12px;
 		color: #f7fff5;
-		text-align: center;
+		text-align: left;
 	}
 
-	#scroll-content h2,
+	#scroll-content h2 {
+		align-self: center;
+		text-align: center;
+		width: 100%;
+	}
+
 	#scroll-content p {
 		margin: 0;
 		text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+	}
+
+	#scroll-content h2{
+		margin: 0;
+		font-size: clamp(2rem, 6vw, 4.2rem);
+		text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+	}
+
+	.project-feature-left {
+		width: min(920px, 92vw);
+		margin-left: calc((100% - 75vw) / 2);
+		margin-top: 200px;
+	}
+
+	.project-feature-right {
+		margin-left: auto;
+		margin-right: calc((100% - 75vw) / 2);
+	}
+
+	.project-feature-right h3 {
+		text-align: right;
+	}
+
+	.project-feature-left h3 {
+		margin: 0;
+		font-size: clamp(1.6rem, 6.8vw, 5.2rem);
+		line-height: 0.95;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		text-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+	}
+
+	.project-feature-left p {
+		margin-top: 60px;
+		font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+		line-height: 1.35;
+		max-width: none;
+		text-align: justify;
+		text-justify: inter-word;
+	}
+
+	.project-cta {
+		display: block;
+		width: fit-content;
+		margin-top: 28px;
+		margin-left: 0;
+		padding: 2px 0;
+		color: #d6f9ff;
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		text-decoration: none;
+		border-bottom: 2px solid rgba(182, 255, 106, 0.6);
+		transition: color 0.2s ease, text-shadow 0.2s ease, border-color 0.2s ease, background-size 0.2s ease;
+		background-image: linear-gradient(rgba(182, 255, 106, 0.28), rgba(182, 255, 106, 0.28));
+		background-repeat: no-repeat;
+		background-position: 0 100%;
+		background-size: 0% 45%;
+	}
+
+	.project-cta:hover {
+		color: #f3ffe8;
+		text-shadow: 0 0 14px rgba(182, 255, 106, 0.65);
+		border-color: rgba(206, 255, 142, 1);
+		background-size: 100% 45%;
+	}
+
+	.project-cta:focus-visible {
+		outline: 2px solid #b6ff6a;
+		outline-offset: 3px;
+	}
+
+	.highlight-skill,
+	.highlight-tech,
+	.highlight-platform,
+	.highlight-metric {
+		font-weight: 800;
+	}
+
+	.highlight-skill {
+		color: #9effc4;
+	}
+
+	.highlight-tech {
+		color: #7be7ff;
+	}
+
+	.highlight-platform {
+		color: #ffd787;
+	}
+
+	.highlight-metric {
+		color: #b6ff6a;
+		letter-spacing: 0.02em;
 	}
 
 	#hero-left {
@@ -343,6 +474,20 @@ const stars = Array.from({ length: 55 }, () => ({
 	}
 
 	@media screen and (max-width: 768px) {
+		#scroll-content {
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		.project-feature-left {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.project-feature-right {
+			margin-right: 0;
+		}
+
 		#hero-right {
 			transform: translateY(-12px);
 		}
