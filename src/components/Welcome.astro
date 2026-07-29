@@ -1,10 +1,26 @@
 ---
 import earthRotate from '../assets/earthRotate.gif';
-import maintenanceBG from '../assets/maintenanceBG.png';
+
+const stars = Array.from({ length: 55 }, () => ({
+	x: (Math.random() * 100).toFixed(2),
+	y: (Math.random() * 100).toFixed(2),
+	size: (3.4 + Math.random() * 4.2).toFixed(2),
+	duration: (2.8 + Math.random() * 4).toFixed(2),
+	delay: (-Math.random() * 6).toFixed(2),
+	alpha: (0.62 + Math.random() * 0.38).toFixed(2)
+}));
 ---
 
 <div id="container">
-	<img id="background" src={maintenanceBG.src} alt="" fetchpriority="high" />
+	<div id="space-dark" aria-hidden="true"></div>
+	<div id="stars-field" aria-hidden="true">
+		{stars.map((star) => (
+			<span
+				class="star"
+				style={`--x: ${star.x}%; --y: ${star.y}%; --size: ${star.size}px; --dur: ${star.duration}s; --delay: ${star.delay}s; --alpha: ${star.alpha};`}
+			></span>
+		))}
+	</div>
 
 	<section id="hero">
 		<div id="hero-left">
@@ -53,9 +69,40 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: -1;
-		filter: blur(6px);
+		z-index: -4;
+		opacity: 0.2;
+		filter: blur(6px) brightness(0.4);
 		transform: scale(1.05);
+	}
+
+	#space-dark {
+		position: fixed;
+		inset: 0;
+		z-index: -3;
+		background: #000;
+		pointer-events: none;
+	}
+
+	#stars-field {
+		position: fixed;
+		inset: 0;
+		z-index: -2;
+		pointer-events: none;
+	}
+
+	.star {
+		position: absolute;
+		left: var(--x);
+		top: var(--y);
+		width: var(--size);
+		height: var(--size);
+		transform: translate(-50%, -50%);
+		border-radius: 999px;
+		opacity: 0;
+		background: radial-gradient(circle, rgba(255, 246, 194, 1) 0%, rgba(255, 228, 129, 0.9) 52%, rgba(255, 213, 99, 0.22) 78%, transparent 100%);
+		filter: drop-shadow(0 0 8px rgba(255, 215, 100, 0.8));
+		animation: starFlicker var(--dur) ease-in-out infinite;
+		animation-delay: var(--delay);
 	}
 
 	#container {
@@ -117,8 +164,11 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 	#intro-subhead {
 		margin: 0;
 		font-size: 1rem;
-		max-width: ch;
+		max-width: 62ch;
 		line-height: 1.15;
+		text-align: justify;
+		text-justify: inter-word;
+		hyphens: auto;
 		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 	}
 
@@ -142,13 +192,11 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 		letter-spacing: 1px;
 		text-transform: uppercase;
 
-		/* override current gradient text look */
 		background: none;
 		-webkit-text-fill-color: #8bff7a;
 		color: #8bff7a;
 		animation: none;
 
-		/* chunky retro edge */
 		text-shadow:
 			2px 0 0 #111,
 			0 2px 0 #111,
@@ -321,6 +369,24 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 	100% { background-position: 0% 50%; }
 }
 
+@keyframes starFlicker {
+	0%, 100% {
+		opacity: 0;
+	}
+	20% {
+		opacity: var(--alpha);
+	}
+	58% {
+		opacity: var(--alpha);
+	}
+	82% {
+		opacity: 0.24;
+	}
+	92% {
+		opacity: 0.08;
+	}
+}
+
 @keyframes titleFloat {
 	0%, 100% { transform: translateY(0); }
 	50% { transform: translateY(-3px); }
@@ -329,6 +395,11 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 @media (prefers-reduced-motion: reduce) {
 	pre,
 	code {
+		animation: none;
+	}
+
+	#stars-field,
+	.star {
 		animation: none;
 	}
 }
