@@ -7,10 +7,22 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 	<img id="background" src={maintenanceBG.src} alt="" fetchpriority="high" />
 
 	<section id="hero">
-    <img id="earth-gif" src={earthRotate.src} width="600" height="550" alt="Earth Rotate" />
-    <h1>
-        <code><pre id="maintenance-title">Under Maintenance</pre></code>
-    </h1>
+		<div id="hero-left">
+			<p id="hero-tag">DistantPluto</p>
+			<h1 id="intro-name">John Ranola</h1>
+			<p id="intro-head">Creative Developer | Web Development, Software & 3D Design</p>
+			<p id="intro-subhead">
+				Creativity and Technology. Two things I love combining to create interactive digital experiences, websites, and software.
+				As a Computer Science Graduate that's skilled in web development, software development, and 3D design, I enjoy building digital experiences that are both functional and visually appealing.
+			</p>
+		</div>
+
+		<div id="hero-right">
+			<img id="earth-gif" src={earthRotate.src} width="600" height="550" alt="Earth Rotate" />
+			<h2>
+				<code><pre id="maintenance-title">Under Maintenance</pre></code>
+			</h2>
+		</div>
 	</section>
 
 	<!--
@@ -60,17 +72,67 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 	}
 
 	#hero {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 		align-items: center;
-		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
+		gap: 24px;
+		width: min(1120px, 92vw);
 		padding: 16px;
-		text-align: center;
 	}
 
-	#hero h1 {
-    margin: 0;
-    transform: translateY(-300px);
+	#hero-left {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+		text-align: left;
+		color: #f7fff5;
+	}
+
+	#hero-tag {
+		margin: 0;
+		font-size: 0.9rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		opacity: 0.9;
+	}
+
+	#intro-name {
+		margin: 0;
+		font-size: clamp(2rem, 6vw, 4.2rem);
+		line-height: 1.05;
+		font-weight: 800;
+		text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+	}
+
+	#intro-head {
+		margin: 0;
+		font-size: clamp(1rem, 1.8vw, 1.2rem);
+		max-width: 34ch;
+		line-height: 1.45;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+	}
+
+	#intro-subhead {
+		margin: 0;
+		font-size: 1rem;
+		max-width: ch;
+		line-height: 1.15;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+	}
+
+	#hero-right {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		transform: translateY(-64px);
+	}
+
+	#hero-right h2 {
+		margin: -260px 0 0;
 	}
 
 	#maintenance-title {
@@ -193,14 +255,32 @@ import maintenanceBG from '../assets/maintenanceBG.png';
 	}
 
 	@media screen and (max-width: 768px) {
+		#hero-right {
+			transform: translateY(-12px);
+		}
+
+		#hero-right h2 {
+			margin: -90px 0 0;
+		}
+
 		#container {
 			display: flex;
 			flex-direction: column;
 		}
 
 		#hero {
-			display: block;
-			padding-top: 10%;
+			grid-template-columns: 1fr;
+			padding-top: 8%;
+			text-align: center;
+		}
+
+		#hero-left {
+			text-align: center;
+			align-items: center;
+		}
+
+		#hero-copy {
+			max-width: 40ch;
 		}
 
 		#links {
