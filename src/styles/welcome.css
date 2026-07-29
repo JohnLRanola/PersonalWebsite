@@ -1,7 +1,7 @@
 :root {
 	--scroll-progress: 0;
 }
-
+/* ---------------------------------------------- Background and Stars ---------------------------------------------- */
 #background {
 	position: fixed;
 	top: 0;
@@ -54,7 +54,9 @@
 	animation: starFlicker var(--dur) ease-in-out infinite;
 	animation-delay: var(--delay);
 }
+/* --------------------------------------------------------------------------------------------------------------------- */
 
+/* ---------------------------------------------- Welcome Page Layout and Hero Section -------------------------------------- */
 #container {
 	font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 	min-height: 220vh;
@@ -79,6 +81,78 @@ main {
 	padding: 16px;
 }
 
+#hero-left {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	text-align: left;
+	color: #f7fff5;
+}
+
+#hero-tag {
+	margin: 0;
+	font-size: 0.9rem;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+
+#intro-name {
+	margin: 0;
+	font-size: clamp(2rem, 6vw, 4.2rem);
+	line-height: 1.05;
+	font-weight: 800;
+	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+#intro-head {
+	margin: 0;
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
+	max-width: 34ch;
+	line-height: 1.45;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+#intro-subhead {
+	margin: 0;
+	font-size: 1rem;
+	max-width: 62ch;
+	line-height: 1.15;
+	text-align: justify;
+	text-justify: inter-word;
+	hyphens: auto;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+#hero-right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transform: translateY(-64px);
+}
+
+#hero-right h2 {
+	margin: -260px 0 0;
+}
+
+#maintenance-title {
+	font-family: 'Press Start 2P', ui-monospace, monospace;
+	font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+	line-height: 1.3;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	background: none;
+	-webkit-text-fill-color: #8bff7a;
+	color: #8bff7a;
+	animation: none;
+	text-shadow: 2px 0 0 #111, 0 2px 0 #111, 2px 2px 0 #111;
+}
+/* ------------------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------- Content and Scroll Effects -------------------------------------- */
 #scroll-content {
 	width: min(860px, 92vw);
 	margin: 0 auto;
@@ -108,7 +182,9 @@ main {
 	font-size: clamp(2rem, 6vw, 4.2rem);
 	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
+/* ---------------------------------------------- Project Feature Section -------------------------------------- */
 .project-feature-left {
 	width: min(920px, 92vw);
 	margin-left: calc((100% - 75vw) / 2);
@@ -173,7 +249,9 @@ main {
 	outline: 2px solid #b6ff6a;
 	outline-offset: 3px;
 }
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
+/* ---------------------------------------------- Skills Section -------------------------------------- */
 #skills-section {
 	width: min(860px, 84vw);
 	min-height: 100vh;
@@ -284,77 +362,9 @@ main {
 	color: #b6ff6a;
 	letter-spacing: 0.02em;
 }
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
-#hero-left {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 10px;
-	text-align: left;
-	color: #f7fff5;
-}
-
-#hero-tag {
-	margin: 0;
-	font-size: 0.9rem;
-	letter-spacing: 0.22em;
-	text-transform: uppercase;
-	opacity: 0.9;
-}
-
-#intro-name {
-	margin: 0;
-	font-size: clamp(2rem, 6vw, 4.2rem);
-	line-height: 1.05;
-	font-weight: 800;
-	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-}
-
-#intro-head {
-	margin: 0;
-	font-size: clamp(1rem, 1.8vw, 1.2rem);
-	max-width: 34ch;
-	line-height: 1.45;
-	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-}
-
-#intro-subhead {
-	margin: 0;
-	font-size: 1rem;
-	max-width: 62ch;
-	line-height: 1.15;
-	text-align: justify;
-	text-justify: inter-word;
-	hyphens: auto;
-	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-}
-
-#hero-right {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	transform: translateY(-64px);
-}
-
-#hero-right h2 {
-	margin: -260px 0 0;
-}
-
-#maintenance-title {
-	font-family: 'Press Start 2P', ui-monospace, monospace;
-	font-size: clamp(1.4rem, 3.2vw, 2.4rem);
-	line-height: 1.3;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	background: none;
-	-webkit-text-fill-color: #8bff7a;
-	color: #8bff7a;
-	animation: none;
-	text-shadow: 2px 0 0 #111, 0 2px 0 #111, 2px 2px 0 #111;
-}
-
+/* ------------------------------------------------ Links and Buttons -------------------------------------- */
 #links {
 	display: flex;
 	gap: 16px;
@@ -390,7 +400,9 @@ main {
 	color: rgb(230, 230, 230);
 	box-shadow: none;
 }
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
+/* ---------------------------------------------- Code Blocks and Preformatted Text -------------------------------------- */
 pre {
 	font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 	font-weight: normal;
@@ -426,7 +438,9 @@ code {
 	border-radius: 16px;
 	border: 1px solid white;
 }
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
+/* ---------------------------------------------- News Section and Responsive Styles -------------------------------------- */
 #news {
 	position: absolute;
 	bottom: 16px;
@@ -600,3 +614,4 @@ code {
 		transform: none;
 	}
 }
+/* ----------------------------------------------------------------------------------------------------------- */
