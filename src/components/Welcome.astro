@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import earthRotate from '../assets/earthRotate.gif';
 import '../styles/welcome.css';
 
@@ -26,13 +27,13 @@ const stars = Array.from({ length: 55 }, () => ({
 	<header id="site-header" aria-label="Site header">
 		<p class="site-brand">DistantPluto</p>
 		<nav aria-label="Primary navigation">
-			<a href="#hero">Home</a>
-			<a href="#scroll-content">Projects</a>
-			<a href="#skills-section">Skills</a>
+			<a href="#home">Home</a>
+			<a href="#projects">Projects</a>
+			<a href="#skills">Skills</a>
 		</nav>
 	</header>
 
-	<section id="hero">
+	<section id="home">
 		<div id="hero-left">
 			<p id="hero-tag">DistantPluto</p>
 			<h1 id="intro-name">John Ranola</h1>
@@ -41,17 +42,29 @@ const stars = Array.from({ length: 55 }, () => ({
 				Creativity and Technology. Two things I love combining to create interactive digital experiences, websites, and software.
 				As a Computer Science Graduate that's skilled in web development, software development, and 3D design, I enjoy building digital experiences that are both functional and visually appealing.
 			</p>
+			<div class="hero-social-links" aria-label="Social links">
+				<a class="hero-social-btn" href="https://www.linkedin.com/in/john-ranola-387367328/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+					<svg class="hero-social-icon" viewBox="0 0 24 24" role="img" aria-hidden="true">
+						<path d="M4.983 3.5a2.496 2.496 0 1 0 0 4.991A2.496 2.496 0 0 0 4.983 3.5M2.76 9.89h4.446V21H2.76zm7.231 0h4.261v1.518h.06c.594-1.125 2.046-2.311 4.212-2.311 4.506 0 5.336 2.967 5.336 6.826V21h-4.446v-4.503c0-1.074-.019-2.458-1.498-2.458-1.5 0-1.729 1.171-1.729 2.381V21H9.991z" />
+					</svg>
+				</a>
+				<a class="hero-social-btn" href="https://github.com/JohnLRanola" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+					<svg class="hero-social-icon" viewBox="0 0 24 24" role="img" aria-hidden="true">
+						<path d="M12 .5C5.648.5.5 5.648.5 12a11.5 11.5 0 0 0 7.863 10.916c.575.105.786-.25.786-.555 0-.273-.01-.998-.016-1.96-3.198.695-3.874-1.541-3.874-1.541-.523-1.33-1.277-1.683-1.277-1.683-1.045-.714.079-.7.079-.7 1.156.081 1.765 1.186 1.765 1.186 1.027 1.76 2.695 1.252 3.352.958.104-.744.402-1.252.73-1.539-2.553-.29-5.238-1.277-5.238-5.686 0-1.257.449-2.284 1.185-3.09-.119-.29-.513-1.457.113-3.038 0 0 .966-.309 3.167 1.18a11 11 0 0 1 5.766 0c2.199-1.489 3.163-1.18 3.163-1.18.628 1.581.234 2.748.115 3.038.738.806 1.184 1.833 1.184 3.09 0 4.42-2.689 5.393-5.252 5.678.413.355.781 1.055.781 2.126 0 1.535-.014 2.773-.014 3.149 0 .308.207.665.793.553A11.5 11.5 0 0 0 23.5 12C23.5 5.648 18.352.5 12 .5" />
+					</svg>
+				</a>
+			</div>
 		</div>
 
 		<div id="hero-right">
-			<img id="earth-gif" src={earthRotate.src} width="600" height="550" alt="Earth Rotate" />
+			<Image id="earth-gif" src={earthRotate} width={600} height={550} alt="Earth Rotate" loading="eager" fetchpriority="high" />
 			<h2>
-				<code><pre id="maintenance-title">Under Maintenance</pre></code>
+				<code><pre id="maintenance-title">Under DEVELOPMENT!</pre></code>
 			</h2>
 		</div>
 	</section>
 
-	<section id="scroll-content" aria-label="Scroll content">
+	<section id="projects" aria-label="Scroll content">
 		<h2>PROJECTS</h2>
 		<article class="project-feature-left">
 			<h3>PROJECT LILYPAD</h3>
@@ -64,7 +77,7 @@ const stars = Array.from({ length: 55 }, () => ({
 				in <span class="highlight-skill">rapid game development</span>, <span class="highlight-skill">community-driven design</span>, and <span class="highlight-tech">Unreal Engine 5</span>.
 
 			</p>
-			<a class="project-cta" href="/projects/lilypad" aria-label="View Project Lilypad case study page">
+			<a class="project-cta" href="#lilypad-modal" data-open-lilypad aria-label="View Project Lilypad case study page">
 				CLICK HERE TO CHECK OUT PROJECT LILYPAD
 			</a>
 		</article>
@@ -80,7 +93,7 @@ const stars = Array.from({ length: 55 }, () => ({
 				as well as my love for <span class="highlight-platform">Anime</span> especially <span class="highlight-platform">Studio Ghibli</span>.
 
 			</p>
-			<a class="project-cta" href="/projects/your-project" aria-label="View project details page">
+			<a class="project-cta" href="#animations-modal" data-open-modal="animations-modal" aria-label="View animations board">
 				CLICK HERE TO CHECK OUT ANIMATIONS
 			</a>
 		</article>
@@ -88,7 +101,80 @@ const stars = Array.from({ length: 55 }, () => ({
 		
 	</section>
 
-	<section id="skills-section" aria-label="Technical skills">
+	<section
+		id="lilypad-modal"
+		class="project-modal"
+		aria-label="Project Lilypad details"
+		aria-hidden="true"
+	>
+		<button class="project-modal__close" type="button" data-close-modal aria-label="Close Project Lilypad details">
+			Close
+		</button>
+		<div class="project-modal__panel" role="dialog" aria-modal="true" aria-label="Project Lilypad video">
+			<div class="project-video-shell">
+				<iframe
+					class="project-video"
+					title="Project Lilypad video"
+					src="https://www.youtube.com/embed/NFAzltqJ_RI"
+					loading="eager"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+				></iframe>
+			</div>
+		</div>
+	</section>
+
+	<section
+		id="animations-modal"
+		class="project-modal"
+		aria-label="Animations board"
+		aria-hidden="true"
+	>
+		<button class="project-modal__close" type="button" data-close-modal aria-label="Close animations board">
+			Close
+		</button>
+		<div class="project-modal__panel project-modal__panel--board" role="dialog" aria-modal="true" aria-label="Draggable animations board">
+			<div class="postit-board">
+				<article class="postit-note postit-note--yellow" data-draggable-note>
+					<header class="postit-note__handle">Help I'm Stuck in Space - Drag Me</header>
+					<iframe
+						class="postit-note__video"
+						title="Animation clip one"
+						src="https://www.youtube.com/embed/1EzydhaPrX0"
+						loading="eager"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen
+					></iframe>
+				</article>
+
+				<article class="postit-note postit-note--blue" data-draggable-note>
+					<header class="postit-note__handle">Rock, Paper, Scissors - Drag Me</header>
+					<iframe
+						class="postit-note__video"
+						title="Animation clip two"
+						src="https://youtube.com/embed/Gdj6MBLQ0Bc"
+						loading="eager"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen
+					></iframe>
+				</article>
+
+				<article class="postit-note postit-note--green" data-draggable-note>
+					<header class="postit-note__handle">Work Story - Drag Me</header>
+					<iframe
+						class="postit-note__video"
+						title="Animation clip three"
+						src="https://youtube.com/embed/yy9UyJMiUsY"
+						loading="eager"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen
+					></iframe>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section id="skills" aria-label="Technical skills">
 		<h2>CREATIVE & TECHNICAL TOOLKIT</h2>
 		<div class="skills-grid">
 			<article class="skill-card">
@@ -174,9 +260,9 @@ const stars = Array.from({ length: 55 }, () => ({
 	<footer id="site-footer" aria-label="Site footer">
 		<p>© 2026 DISTANTPLUTO</p>
 		<nav aria-label="Footer links">
-			<a href="#hero">Back to Top</a>
-			<a href="#scroll-content">Projects</a>
-			<a href="#skills-section">Skills</a>
+			<a href="#home">Back to Top</a>
+			<a href="#projects">Projects</a>
+			<a href="#skills">Skills</a>
 		</nav>
 	</footer>
 
