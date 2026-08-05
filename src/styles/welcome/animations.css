@@ -1,52 +1,117 @@
+/* Code blocks and animation rules: these styles handle the stylized code text, the keyframes, and the reduced-motion fallbacks. */
 pre {
+	/* Preformatted text is styled like a glowing gradient title so it reads more like a decorative element than plain code output. */
+
+	/* Use a monospace stack so code-like text feels authentic. */
 	font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+	/* Normal weight keeps the gradient text from looking too heavy. */
 	font-weight: normal;
+
+	/* Build the text fill with a moving gradient. */
 	background: linear-gradient(14deg, #f8f8f8 0%, #3bf75b 50%, #5aff4b 100%);
+
+	/* Make the gradient large enough to animate smoothly. */
 	background-size: 200% 200%;
+
+	/* Start the gradient at the left side. */
 	background-position: 0% 50%;
+
+	/* Clip the background to the text glyphs. */
 	-webkit-background-clip: text;
+
+	/* Make the text itself transparent so the gradient shows through. */
 	-webkit-text-fill-color: transparent;
+
+	/* Keep the standard background clipping behavior too. */
 	background-clip: text;
+
+	/* Remove default spacing. */
 	margin: 0;
+
+	/* Animate the gradient so the text feels alive. */
 	animation: titleGradientShift 3s ease-in-out infinite;
 }
 
 code {
+	/* Inline code gets a chunky retro badge shape to contrast with the cleaner body text. */
+
+	/* Make inline code behave like a small block. */
 	display: inline-block;
+
+	/* Give the badge some internal breathing room. */
 	padding: 10px 18px;
+
+	/* Keep the corners sharp so it feels pixel-like. */
 	border-radius: 0;
+
+	/* Use a thick border to mimic an old-school UI badge. */
 	border: 4px solid #111;
+
+	/* Fill the badge with a bright purple background. */
 	background: #6f63ff;
+
+	/* Create a layered pixel-shadow effect. */
 	box-shadow: 4px 0 0 #111, 0 4px 0 #111, 8px 4px 0 rgba(0, 0, 0, 0.35);
+
+	/* Clip the corners to create the pixelated badge shape. */
 	clip-path: polygon(
 		0 4px, 4px 4px, 4px 0,
 		calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
 		100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
 		4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
 	);
+
+	/* Add a gentle floating motion to make the badge feel playful. */
 	animation: titleFloat 2.4s ease-in-out infinite;
 }
 
 @keyframes titleGradientShift {
+	/* This animation slowly shifts the gradient position, which makes the preformatted text feel like it is glowing and moving rather than staying static. */
+
+	/* Start at the left side of the gradient. */
 	0% { background-position: 0% 50%; }
+
+	/* Move the gradient to the far right halfway through. */
 	50% { background-position: 100% 50%; }
+
+	/* Return to the start so the loop can repeat smoothly. */
 	100% { background-position: 0% 50%; }
 }
 
 @keyframes starFlicker {
+	/* The star field uses several opacity stops so the particles do not blink in perfect sync; that makes the sky feel more natural. */
+
+	/* Start and end completely hidden. */
 	0%, 100% { opacity: 0; }
+
+	/* Fade in to the per-star alpha value. */
 	20% { opacity: var(--alpha); }
+
+	/* Stay visible for most of the cycle. */
 	58% { opacity: var(--alpha); }
+
+	/* Dim the star slightly near the end. */
 	82% { opacity: 0.24; }
+
+	/* Fade further before the loop restarts. */
 	92% { opacity: 0.08; }
 }
 
 @keyframes titleFloat {
+	/* This small up-and-down movement gives the code badge a playful floating feel without pulling too much attention away from the rest of the page. */
+
+	/* Start at the resting position. */
 	0%, 100% { transform: translateY(0); }
+
+	/* Rise slightly at the midpoint. */
 	50% { transform: translateY(-3px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+	/* Users who prefer reduced motion should not get animated backgrounds or animated reveals, so this block removes the motion-heavy behavior while keeping the layout intact. */
+
+	/* Disable the decorative animations on code text and stars. */
 	pre,
 	code,
 	#stars-field,
@@ -55,13 +120,19 @@ code {
 	}
 
 	#stars-field {
+		/* Keep the star field static instead of drifting. */
 		transform: none;
 	}
 
 	.reveal-on-scroll,
 	.reveal-on-scroll.is-visible {
+		/* Show reveal elements immediately. */
 		opacity: 1;
+
+		/* Remove the movement from the reveal animation. */
 		transform: none;
+
+		/* Turn off the animation timing. */
 		transition: none;
 	}
 
@@ -69,12 +140,16 @@ code {
 	.project-modal__panel,
 	.skill-card.reveal-on-scroll,
 	.skill-card.reveal-on-scroll.is-visible {
+		/* Remove the transition so the interface appears instantly. */
 		transition: none;
 	}
 
 	.project-modal__panel,
 	.project-modal.is-open .project-modal__panel {
+		/* Keep the modal panel visible without sliding in. */
 		opacity: 1;
+
+		/* Remove the entrance offset. */
 		transform: none;
 	}
 }
