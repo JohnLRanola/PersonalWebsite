@@ -1,0 +1,747 @@
+/* Project section and reveal effects: controls the project layout, fade-in animations as projects enter the screen, and the styling for project buttons/links. */
+#projects {
+	/* The project section is centered in the page with a narrow readable width so the descriptions do not stretch too wide on large screens. */
+	width: min(860px, 92vw);
+
+	/* Horizontal auto margins center the section within the page. */
+	margin: 0 auto;
+
+	/* Give the project section enough vertical space to feel like its own chapter in the scroll. */
+	min-height: 95vh;
+
+	/* Stack the project pieces vertically instead of side by side. */
+	display: flex;
+
+	/* Center the content vertically inside the tall section. */
+	flex-direction: column;
+
+	/* Keep the content centered vertically as the page scrolls. */
+	justify-content: center;
+
+	/* Align the text and blocks to the left so the description reads naturally. */
+	align-items: flex-start;
+
+	/* Add breathing room between the title, copy, and CTA. */
+	gap: 12px;
+
+	/* Light text on a dark background keeps the section readable. */
+	color: #f7fff5;
+
+	/* Left-align the section text by default. */
+	text-align: left;
+}
+
+#projects h2 {
+	/* The section title stays centered even though the section content is left-aligned. This gives the block a clear visual anchor. */
+	align-self: center;
+
+	/* Center the title text inside its own line. */
+	text-align: center;
+
+	/* Let the heading span the full width of the project block. */
+	width: 100%;
+
+	/* Remove the browser's default heading margin. */
+	margin: 0;
+
+	/* Scale the title responsively so it dominates the section without overflowing. */
+	font-size: clamp(2rem, 6vw, 4.2rem);
+
+	/* Shadow helps the title remain readable over the glowing background. */
+	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+#projects p {
+	/* Paragraphs have no extra margin so spacing is controlled by the section gap instead. */
+	margin: 0;
+
+	/* Copy gets the same dark shadow treatment as the heading for contrast. */
+	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.reveal-on-scroll {
+	/* Elements start slightly lower and transparent, then transition upward and in as they enter the viewport. The delay variable lets related items stagger one after another. */
+
+	/* Start hidden until the observer decides to reveal the element. */
+	opacity: 0;
+
+	/* Offset the element downward so the reveal has motion instead of just a fade. */
+	transform: translateY(24px);
+
+	/* Animate both opacity and position when the class changes. */
+	transition: opacity 0.8s ease, transform 0.8s ease;
+
+	/* Apply a per-element delay to create a staggered sequence. */
+	transition-delay: var(--reveal-delay, 0ms);
+
+	/* Tell the browser these values will animate so it can optimize rendering. */
+	will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+	/* Once the observer sees the element, this state fades it in and resets its position. */
+
+	/* Make the element fully visible. */
+	opacity: 1;
+
+	/* Return the element to its natural position. */
+	transform: translateY(0);
+}
+
+.project-feature-left {
+	/* This block creates the large feature-style project layout. The left offset keeps the composition visually expansive and slightly asymmetrical. */
+
+	/* Keep the block wide but still constrained on large screens. */
+	width: min(920px, 92vw);
+
+	/* Push the block away from the left side of the viewport to create the offset look. */
+	margin-left: calc((100% - 75vw) / 2);
+
+	/* Give the project block extra vertical separation from the previous section. */
+	margin-top: 200px;
+}
+
+.project-feature-right {
+	/* This variant flips the block to the opposite side so the project section alternates direction and feels less repetitive. */
+
+	/* Let the block sit against the right side of the content area. */
+	margin-left: auto;
+
+	/* Mirror the left-offset amount so the spacing feels balanced. */
+	margin-right: calc((100% - 75vw) / 2);
+}
+
+.project-feature-right h3 {
+	/* The title is right-aligned here to reinforce the mirrored composition. */
+
+	/* Match the title to the right-aligned block. */
+	text-align: right;
+}
+
+.project-feature-left h3 {
+	/* Large uppercase project title used as a strong visual headline. */
+
+	/* Remove default heading spacing. */
+	margin: 0;
+
+	/* Make the project title feel like the visual centerpiece of the block. */
+	font-size: clamp(1.6rem, 6.8vw, 5.2rem);
+
+	/* Tight line-height keeps the title compact and bold. */
+	line-height: 0.95;
+
+	/* Slight spacing between letters adds a poster-like feel. */
+	letter-spacing: 0.02em;
+
+	/* Force the title into all caps for visual consistency. */
+	text-transform: uppercase;
+
+	/* Shadow keeps the title readable over the dark background. */
+	text-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+}
+
+.project-feature-left p {
+	/* The description text is deliberately large and readable because it carries most of the project story. */
+
+	/* Add space between the title and the paragraph. */
+	margin-top: 60px;
+
+	/* Use a responsive size so the paragraph remains readable without overpowering the title. */
+	font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+
+	/* Slightly loose line-height improves readability for longer copy. */
+	line-height: 1.35;
+
+	/* Let the paragraph span the full available width. */
+	max-width: none;
+
+	/* Justify the text to create a more editorial, block-like appearance. */
+	text-align: justify;
+
+	/* Help the browser distribute words evenly when text is justified. */
+	text-justify: inter-word;
+}
+
+.project-cta {
+	/* This CTA reads like text but behaves like a button. The underline fill animation makes the interaction feel more tactile without adding extra markup. */
+
+	/* Make the link behave like a block so the underline can animate across its full width. */
+	display: block;
+
+	/* Shrink-wrap the button to the text instead of stretching full width. */
+	width: fit-content;
+
+	/* Separate the CTA from the paragraph above it. */
+	margin-top: 28px;
+
+	/* The underline itself is drawn with a background image, so keep the padding minimal. */
+	padding: 2px 0;
+
+	/* Light accent text keeps the CTA visible but not louder than the heading. */
+	color: #d6f9ff;
+
+	/* Slightly larger than body text so it reads like an action. */
+	font-size: 1rem;
+
+	/* Bold weight makes the CTA feel intentional and clickable. */
+	font-weight: 700;
+
+	/* Tiny extra spacing improves the uppercase shape. */
+	letter-spacing: 0.03em;
+
+	/* Uppercase text makes the CTA feel more button-like. */
+	text-transform: uppercase;
+
+	/* Remove the browser's default underline because this CTA draws its own. */
+	text-decoration: none;
+
+	/* The border underline is the first part of the animated underline effect. */
+	border-bottom: 2px solid rgba(182, 255, 106, 0.6);
+
+	/* Animate color, shadow, border, and background size so the hover feels responsive. */
+	transition: color 0.2s ease, text-shadow 0.2s ease, border-color 0.2s ease, background-size 0.2s ease;
+
+	/* The background image becomes the fill that grows on hover. */
+	background-image: linear-gradient(rgba(182, 255, 106, 0.28), rgba(182, 255, 106, 0.28));
+
+	/* Keep the background fill from repeating. */
+	background-repeat: no-repeat;
+
+	/* Start the fill at the bottom edge so it feels like an underline. */
+	background-position: 0 100%;
+
+	/* Start with almost no fill visible. */
+	background-size: 0% 45%;
+}
+
+.project-cta:hover {
+	color: #f3ffe8;
+	text-shadow: 0 0 14px rgba(182, 255, 106, 0.65);
+	border-color: rgba(206, 255, 142, 1);
+	background-size: 100% 45%;
+}
+
+.project-cta:focus-visible {
+	/* Keep the CTA keyboard-friendly with a clear focus outline. */
+	outline: 2px solid #b6ff6a;
+	outline-offset: 3px;
+}
+
+body.modal-open {
+	/* When a modal opens, background scrolling is disabled so the user stays focused on the overlay content. */
+
+	/* Prevent the page behind the modal from moving. */
+	overflow: hidden;
+}
+
+body.modal-open #stars-field,
+body.modal-open .star {
+	/* The stars are paused during modal viewing so the background does not keep animating behind the overlay and compete for attention. */
+
+	/* Stop the star animation while the modal is open. */
+	animation-play-state: paused;
+}
+
+body.modal-open #stars-field {
+	/* The star field is dimmed further in modal mode to keep the overlay content visually dominant. */
+
+	/* Make the background layer quieter under the modal. */
+	opacity: 0.12;
+
+	/* Remove the scrolling drift while the modal is active. */
+	transform: none;
+}
+
+.project-modal {
+	/* This is the modal overlay that covers the whole viewport. It starts hidden and becomes interactive only when JavaScript adds the open class. */
+
+	/* Fix the overlay to the viewport so it covers everything beneath it. */
+	position: fixed;
+
+	/* Stretch the overlay to all four edges of the screen. */
+	inset: 0;
+
+	/* Place the modal above the main page content. */
+	z-index: 30;
+
+	/* Keep the overlay visible as a block-level layer when opened. */
+	display: block;
+
+	/* Remove any default spacing. */
+	padding: 0;
+
+	/* Build a darker atmospheric backdrop behind the modal panel. */
+	background:
+		radial-gradient(circle at 15% 18%, rgba(74, 151, 216, 0.18), transparent 42%),
+		radial-gradient(circle at 82% 85%, rgba(160, 220, 90, 0.12), transparent 40%),
+		rgba(1, 8, 14, 0.88);
+
+	/* Keep the backdrop itself flat so the panel is the focus. */
+	backdrop-filter: none;
+
+	/* Start fully hidden. */
+	opacity: 0;
+
+	/* Hidden modals should not be visible to the user. */
+	visibility: hidden;
+
+	/* Hidden modals should not respond to pointer input. */
+	pointer-events: none;
+
+	/* Fade the modal in, then reveal visibility once the fade finishes. */
+	transition: opacity 0.38s ease, visibility 0s linear 0.38s;
+}
+
+.project-modal::before {
+	/* The pseudo-element adds an extra veil over the backdrop so the content panel stands out more clearly. */
+
+	/* Add a soft gradient wash over the background. */
+	content: '';
+
+	/* Anchor the wash to the overlay. */
+	position: absolute;
+
+	/* Cover the whole overlay. */
+	inset: 0;
+
+	/* Let clicks pass through to the panel and close button. */
+	pointer-events: none;
+
+	/* Darken the overlay slightly from top to bottom. */
+	background: linear-gradient(180deg, rgba(2, 12, 20, 0.18) 0%, rgba(2, 12, 20, 0.4) 100%);
+}
+
+.project-modal.is-open {
+	/* JavaScript toggles this state when a project opens. It flips the overlay from hidden to visible and allows pointer interaction. */
+
+	/* Make the overlay visible. */
+	opacity: 1;
+
+	/* Tell assistive and visual systems that the overlay is now present. */
+	visibility: visible;
+
+	/* Allow the user to interact with the modal contents. */
+	pointer-events: auto;
+
+	/* Remove the delay once the modal is opening. */
+	transition-delay: 0s;
+}
+
+.project-modal__panel {
+	/* This is the main content surface inside the overlay. It fills the viewport height and animates into place from below. */
+
+	/* Keep the panel positioned inside the overlay so the close button can float separately. */
+	position: relative;
+
+	/* Let the panel span the full available width. */
+	width: 100%;
+
+	/* Give the panel a full-screen height on supported browsers. */
+	height: 100dvh;
+
+	/* Ensure it is at least as tall as the viewport. */
+	min-height: 100vh;
+
+	/* Remove any upper height cap. */
+	max-height: none;
+
+	/* Clip overflowing media so the panel stays clean. */
+	overflow: hidden;
+
+	/* Add padding around the inner content. */
+	padding: 24px clamp(16px, 4vw, 36px) 36px;
+
+	/* Remove any border styling. */
+	border: 0;
+
+	/* Keep the panel rectangular. */
+	border-radius: 0;
+
+	/* Use a dark gradient so media and text remain readable. */
+	background: linear-gradient(180deg, rgba(7, 24, 38, 0.96), rgba(4, 16, 28, 0.96));
+
+	/* We do not need a shadow on the panel itself because the backdrop already separates it visually. */
+	box-shadow: none;
+
+	/* Light text on the dark panel. */
+	color: #eaf9ff;
+
+	/* Use grid to center the inner content. */
+	display: grid;
+
+	/* Center the media block both horizontally and vertically. */
+	place-items: center;
+
+	/* Keep a single row layout inside the panel. */
+	grid-template-rows: 1fr;
+
+	/* No extra internal gap is needed here. */
+	gap: 0;
+
+	/* Start the panel slightly lower so the entrance animation has motion. */
+	transform: translate3d(0, 64px, 0);
+
+	/* Start hidden until the modal is opened. */
+	opacity: 0;
+
+	/* Animate the panel sliding up and fading in. */
+	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+
+	/* Keep paint operations inside the panel isolated for better performance. */
+	contain: paint;
+}
+
+.project-modal.is-open .project-modal__panel {
+	/* The panel settles into its final resting position once the modal is open. */
+
+	/* Move the panel into place. */
+	transform: translate3d(0, 0, 0);
+
+	/* Reveal the panel. */
+	opacity: 1;
+}
+
+.project-modal__close {
+	/* The close button floats in the top-right safe area so it stays reachable on desktop and mobile. */
+
+	/* Pin the close button to the viewport, not the panel. */
+	position: fixed;
+
+	/* Respect the top safe area inset. */
+	top: calc(12px + env(safe-area-inset-top));
+
+	/* Respect the right safe area inset. */
+	right: calc(12px + env(safe-area-inset-right));
+
+	/* Remove any default left margin. */
+	margin-left: 0;
+
+	/* Center the label text inside the button. */
+	display: inline-flex;
+
+	/* Vertically center the text. */
+	align-items: center;
+
+	/* Horizontally center the text. */
+	justify-content: center;
+
+	/* Give the button some clickable area. */
+	padding: 9px 14px;
+
+	/* Use a light border so the button stands out. */
+	border: 1px solid rgba(209, 255, 164, 0.75);
+
+	/* Round the corners gently. */
+	border-radius: 10px;
+
+	/* Dark button background keeps the accent text visible. */
+	background: rgba(7, 24, 38, 0.96);
+
+	/* Match the accent color family used elsewhere. */
+	color: #eaffc8;
+
+	/* Slightly smaller than the main CTA text. */
+	font-size: 0.98rem;
+
+	/* Make the label bold enough to read quickly. */
+	font-weight: 700;
+
+	/* Tiny spacing helps the button text feel balanced. */
+	letter-spacing: 0.02em;
+
+	/* Shadow helps separate the button from the busy overlay. */
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+
+	/* Show a pointer so the user knows it is interactive. */
+	cursor: pointer;
+
+	/* Keep the button above the panel content. */
+	z-index: 40;
+
+	/* Animate color, border, and lift changes smoothly. */
+	transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.project-modal__close:hover {
+	/* Hovering the close button uses the same accent language as the rest of the site so the control feels consistent. */
+
+	/* Brighten the border on hover. */
+	border-color: rgba(182, 255, 106, 0.6);
+
+	/* Add a subtle glow-like hover tint. */
+	background: rgba(182, 255, 106, 0.14);
+
+	/* Shift the text toward the accent color. */
+	color: #b6ff6a;
+
+	/* Lift the button slightly for feedback. */
+	transform: translateY(-1px);
+}
+
+.project-video-shell {
+	/* The media shell constrains embedded video to a clean 16:9 frame while adding border, shadow, and outline depth. */
+
+	/* Keep the shell responsive while preserving the video aspect ratio. */
+	width: min(1320px, 97vw, calc((100vh - 140px) * 16 / 9));
+
+	/* Force a 16:9 shape. */
+	aspect-ratio: 16 / 9;
+
+	/* Add a border so the media feels framed. */
+	border: 1px solid rgba(171, 233, 255, 0.35);
+
+	/* Round the corners for a polished look. */
+	border-radius: 18px;
+
+	/* Hide anything that spills outside the frame. */
+	overflow: hidden;
+
+	/* Dark shell background shows through while the video loads. */
+	background: linear-gradient(180deg, rgba(5, 17, 30, 0.96), rgba(3, 10, 20, 0.96));
+
+	/* Strong shadow separates the frame from the panel. */
+	box-shadow: 0 24px 54px rgba(0, 0, 0, 0.5);
+
+	/* Add an extra inner outline for depth. */
+	outline: 1px solid rgba(164, 228, 255, 0.16);
+
+	/* Pull the outline inward so it does not change the overall size. */
+	outline-offset: -8px;
+}
+
+.project-video {
+	/* The iframe or video element is stretched to fill the shell without introducing its own border or background. */
+
+	/* Fill the full width of the frame. */
+	width: 100%;
+
+	/* Fill the full height of the frame. */
+	height: 100%;
+
+	/* Remove the default iframe border. */
+	border: 0;
+
+	/* Use a dark fallback background while the media loads. */
+	background: #02070d;
+}
+
+.project-modal__panel--board {
+	/* This alternate panel style swaps the clean media frame for a wooden planning-board look used by the draggable animation notes. */
+
+	/* Use a normal block layout instead of the centered grid used by the video modal. */
+	display: block;
+
+	/* Keep anything outside the board from showing. */
+	overflow: hidden;
+
+	/* Remove internal padding so the board can fill the panel edge to edge. */
+	padding: 0;
+
+	/* Layer subtle highlights over a wood-like repeating diagonal background. */
+	background:
+		radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.06), transparent 36%),
+		repeating-linear-gradient(45deg, rgba(95, 58, 28, 0.98) 0px, rgba(95, 58, 28, 0.98) 14px, rgba(111, 69, 35, 0.98) 14px, rgba(111, 69, 35, 0.98) 28px);
+
+	/* Keep the board rendering isolated for smoother dragging. */
+	contain: paint;
+}
+
+.postit-board {
+	/* The board itself is the drag area. Its layered gradients mimic a desk or corkboard surface so the notes feel physically placed. */
+
+	/* Make the board the positioning context for the notes. */
+	position: relative;
+
+	/* Stretch the board to the full panel size. */
+	width: 100%;
+
+	/* Fill the available height. */
+	height: 100%;
+
+	/* Remove default spacing. */
+	margin: 0;
+
+	/* Remove any browser border default. */
+	border: 0;
+
+	/* Keep the board rectangular. */
+	border-radius: 0;
+
+	/* Build a paper/wood texture using a combination of radial and repeating gradients. */
+	background:
+		radial-gradient(circle at 12% 8%, rgba(255, 236, 180, 0.22), transparent 28%),
+		radial-gradient(circle at 84% 76%, rgba(255, 229, 141, 0.16), transparent 24%),
+		repeating-linear-gradient(0deg, rgba(128, 79, 45, 0.94) 0px, rgba(128, 79, 45, 0.94) 26px, rgba(140, 89, 52, 0.94) 26px, rgba(140, 89, 52, 0.94) 52px);
+
+	/* Add a faint inset border to keep the board edges defined. */
+	box-shadow: inset 0 0 0 1px rgba(255, 242, 220, 0.12);
+
+	/* Hide anything that moves outside the board. */
+	overflow: hidden;
+}
+
+.postit-note {
+	/* Each note is positioned absolutely so the script can move it around freely while the board stays fixed. */
+
+	/* Absolute positioning allows the drag script to set left/top directly. */
+	position: absolute;
+
+	/* Keep the note responsive, but cap its maximum width. */
+	width: min(20vw, 250px);
+
+	/* Give each note a tall card shape. */
+	aspect-ratio: 9 / 16;
+
+	/* Inner spacing so the handle and embedded media do not touch the edges. */
+	padding: 12px;
+
+	/* Round the corners to make the notes feel like physical sticky notes. */
+	border-radius: 12px;
+
+	/* Shadow makes the note feel lifted from the board. */
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
+
+	/* Let the script rotate each note individually. */
+	transform: rotate(var(--angle, 0deg));
+
+	/* Prevent text selection while dragging. */
+	user-select: none;
+
+	/* Disable touch scrolling gestures on the note itself. */
+	touch-action: none;
+
+	/* Cursor tells the user the note can be grabbed. */
+	cursor: grab;
+
+	/* Use a small two-row grid: handle on top, media below. */
+	display: grid;
+
+	/* Make the handle row hug its content and let the media fill the rest. */
+	grid-template-rows: auto 1fr;
+
+	/* Space the handle from the media. */
+	gap: 8px;
+
+	/* A subtle border keeps the note edge visible. */
+	border: 1px solid rgba(48, 30, 10, 0.18);
+}
+
+.postit-note[data-dragging='true'] {
+	/* While dragging, the note gets a stronger shadow and a higher z-index so it reads as lifted above the rest of the board. */
+
+	/* Switch the cursor to grabbing to show the drag is active. */
+	cursor: grabbing;
+
+	/* Deepen the shadow while the note is lifted. */
+	box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+
+	/* Slightly increase color intensity during the drag. */
+	filter: saturate(1.06);
+
+	/* Put the dragged note above the others. */
+	z-index: 20;
+}
+
+.postit-note--yellow {
+	/* Initial placement and color for the first note. */
+
+	/* Position the first note near the upper-left area of the board. */
+	left: 4%;
+
+	/* Place it a little below the top edge. */
+	top: 8%;
+
+	/* Give this note a slight counter-clockwise tilt. */
+	--angle: -2deg;
+
+	/* Use a warm yellow gradient for the first sticky note. */
+	background: linear-gradient(180deg, #ffe78d, #ffd967);
+}
+
+.postit-note--blue {
+	/* Initial placement and color for the second note. */
+
+	/* Position the second note closer to the middle. */
+	left: 34%;
+
+	/* Move it a little lower than the first note. */
+	top: 24%;
+
+	/* Give this note a small clockwise tilt. */
+	--angle: 1.4deg;
+
+	/* Use a cool blue gradient for contrast. */
+	background: linear-gradient(180deg, #9ae2ff, #6ac8ef);
+}
+
+.postit-note--green {
+	/* Initial placement and color for the third note. */
+
+	/* Place the third note toward the right side of the board. */
+	left: 63%;
+
+	/* Keep it slightly higher than the second note. */
+	top: 14%;
+
+	/* Tilt it in the opposite direction for visual variety. */
+	--angle: -1.6deg;
+
+	/* Use a green gradient so each note feels distinct. */
+	background: linear-gradient(180deg, #b8ef9f, #96dc79);
+}
+
+.postit-note__handle {
+	/* This label is the drag handle. The script requires users to start dragging from here so the embedded video content itself does not become the drag target. */
+
+	/* Make the handle text small and bold like a label strip. */
+	font-size: 0.82rem;
+
+	/* Increase weight so the handle is easy to spot. */
+	font-weight: 800;
+
+	/* Spread the letters out to look more like a handwritten note label. */
+	letter-spacing: 0.08em;
+
+	/* Match the uppercase visual style of the notes. */
+	text-transform: uppercase;
+
+	/* Dark text keeps the handle readable against all note colors. */
+	color: rgba(24, 20, 14, 0.8);
+
+	/* Small padding keeps the text from touching the note edge. */
+	padding: 2px 2px 0;
+
+	/* A subtle highlight helps the text sit on the bright paper background. */
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.34);
+
+	/* Allow pointer events so the drag script can detect the handle. */
+	pointer-events: auto;
+
+	/* Show the grab cursor over the handle. */
+	cursor: grab;
+
+	/* Disable touch gestures on the handle so dragging feels direct. */
+	touch-action: none;
+}
+
+.postit-note__video {
+	/* The embedded clip fills the note body and keeps its own frame subtle so the draggable card shape remains readable. */
+
+	/* Stretch the media to the full note body. */
+	width: 100%;
+
+	/* Fill the available note height. */
+	height: 100%;
+
+	/* Avoid any minimum size forcing overflow. */
+	min-height: 0;
+
+	/* Add a small border around the embedded media. */
+	border: 1px solid rgba(18, 20, 26, 0.38);
+
+	/* Round the inner media frame to match the note corners. */
+	border-radius: 8px;
+
+	/* Use a dark background behind the media. */
+	background: rgba(14, 19, 28, 0.92);
+}

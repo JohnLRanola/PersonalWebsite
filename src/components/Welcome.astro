@@ -3,12 +3,30 @@ import { Image } from 'astro:assets';
 import earthRotate from '../assets/earthRotate.gif';
 import '../styles/welcome.css';
 
+// Creates an array with 55 stars
+// Each star has a random position, size, animation speed, animation delay and opacity
 const stars = Array.from({ length: 55 }, () => ({
+
+	// Random horizontal poistion between 1 and 100
+	// This becomes a percentage that rounds to 2 decimal places using toFixed(2)
 	x: (Math.random() * 100).toFixed(2),
+
+	// Random vertical position between 1 and 100
+	// This becomes a percentage that rounds to 2 decimal places using toFixed(2)
 	y: (Math.random() * 100).toFixed(2),
+
+	// This randomly chooses a star size between 3.4 and 7.6 pixels, rounded to 2 decimal places
 	size: (3.4 + Math.random() * 4.2).toFixed(2),
+
+	// Chooses a random flicker duration between 2.8 and 6.8 seconds, rounded to 2 decimal places
+	// This means that stars flicker at different speeds making it more natural
 	duration: (2.8 + Math.random() * 4).toFixed(2),
+
+	// Chooses a random delay animation between -6 and 0 seconds, rounded to 2 decimal places
+	// A negative delay is used to prevent all 55 stars beginning their flicker animation at the same time
 	delay: (-Math.random() * 6).toFixed(2),
+
+	// Chooses a random opacity between 0.62 and 1, rounded to 2 decimal places
 	alpha: (0.62 + Math.random() * 0.38).toFixed(2)
 }));
 ---

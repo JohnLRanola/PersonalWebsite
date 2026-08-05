@@ -1,6 +1,6 @@
 const updateScrollBackground = () => {
-	const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
-	const progress = scrollMax > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollMax)) : 0;
+	const scrollMax = document.documentElement.scrollHeight - window.innerHeight; // Finds out the max scroll value for the page
+	const progress = scrollMax > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollMax)) : 0; // Progress is computed as a value between 0 and 1, clamped to the range [0, 1]
 	document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(4));
 };
 
