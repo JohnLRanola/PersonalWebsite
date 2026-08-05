@@ -1,4 +1,7 @@
 @media screen and (max-width: 768px) {
+	/* This breakpoint reshapes the whole page for smaller screens: the hero stacks, the header tightens up, the project modal scales down, and the skills grid loses one column. */
+
+	/* Remove the extra tall desktop spacing so the page flows naturally on smaller screens. */
 	#container {
 		min-height: auto;
 		display: flex;
@@ -7,215 +10,333 @@
 
 	#site-header,
 	#site-footer {
+		/* Make the header and footer span the full device width. */
 		width: 100%;
+
+		/* Remove side borders so they blend cleanly with the screen edges. */
 		border-left: 0;
+
+		/* Remove side borders on the other side as well. */
 		border-right: 0;
+
+		/* Flatten the rounded corners because full-width bars read better on mobile. */
 		border-radius: 0;
 	}
 
 	#site-header {
+		/* Reduce the header padding so it uses less vertical space on small screens. */
 		padding: max(10px, calc(8px + env(safe-area-inset-top))) 12px 12px;
+
+		/* Tighten the gap between brand and links. */
 		gap: 12px;
 	}
 
 	.site-brand {
+		/* Reduce the brand size so it fits comfortably on narrow screens. */
 		font-size: 0.92rem;
+
+		/* Keep the logo-like spacing but make it a little tighter. */
 		letter-spacing: 0.14em;
 	}
 
 	#site-header nav,
 	#site-footer nav {
+		/* Reduce the gap between links on mobile. */
 		gap: 10px;
 	}
 
 	#site-header nav a + a,
 	#site-footer nav a + a {
+		/* Shrink the gap between consecutive links so the nav does not wrap too early. */
 		padding-left: 8px;
+
+		/* Pull the divider a little closer too. */
 		margin-left: 4px;
 	}
 
 	#site-header nav a + a::before,
 	#site-footer nav a + a::before {
+		/* Make the divider slightly shorter on narrow screens. */
 		height: 0.8em;
 	}
 
 	#site-header nav a,
 	#site-footer nav a {
+		/* Keep the link text smaller on mobile. */
 		font-size: 0.9rem;
 	}
 
 	#site-footer {
+		/* Stack the footer content vertically. */
 		flex-direction: column;
+
+		/* Keep everything centered after stacking. */
 		align-items: center;
+
+		/* Give the footer a little more space from the content above it. */
 		margin-top: 26px;
 	}
 
 	#home {
+		/* Collapse the hero into one column on smaller screens. */
 		grid-template-columns: 1fr;
+
+		/* Reduce top padding so the hero stays visible without scrolling. */
 		padding-top: clamp(10px, 4vw, 20px);
+
+		/* Center the content for the stacked layout. */
 		text-align: center;
+
+		/* Let the hero shrink to fit shorter screens. */
 		min-height: auto;
+
+		/* Reduce the gap between stacked hero pieces. */
 		gap: 10px;
 	}
 
 	#hero-left {
+		/* Center the left hero content now that it is stacked. */
 		text-align: center;
+
+		/* Align the stacked elements to the center axis. */
 		align-items: center;
+
+		/* Let the hero copy use the full screen width. */
 		width: 100%;
 	}
 
 	#hero-right {
+		/* Bring the right hero content closer to the text above it. */
 		transform: translateY(-12px);
 	}
 
 	#hero-right h2 {
+		/* Slightly reduce the spacing above the status text. */
 		margin: 10px 0 0;
 	}
 
 	#intro-subhead {
+		/* Left-align the long bio text for easier reading on mobile. */
 		text-align: left;
+
+		/* Disable justification because it can create awkward spacing on narrow columns. */
 		text-justify: auto;
+
+		/* Allow normal word breaking again. */
 		hyphens: none;
+
+		/* Keep the paragraph comfortably readable. */
 		line-height: 1.45;
 	}
 
 	#projects {
+		/* Keep the projects section left-aligned on small screens. */
 		align-items: flex-start;
+
+		/* Let the text flow naturally. */
 		text-align: left;
+
+		/* Reduce the minimum height so the section does not force too much empty space. */
 		min-height: 80vh;
 	}
 
 	.project-feature-left {
+		/* Remove the offset because the stacked mobile layout needs the content to start at the left edge. */
 		margin-left: 0;
+
+		/* Use the full available width on mobile. */
 		width: 100%;
+
+		/* Bring the project block closer to the section title. */
 		margin-top: 96px;
 	}
 
 	.project-feature-right {
+		/* Remove the right offset as well. */
 		margin-right: 0;
 	}
 
 	.project-feature-left p {
+		/* Reduce the top gap above the paragraph when the layout stacks. */
 		margin-top: 28px;
+
+		/* Give the body copy more breathing room on mobile. */
 		line-height: 1.5;
 	}
 
 	.project-modal {
+		/* Remove extra overlay padding on mobile so the content can use the full screen. */
 		padding: 0;
 	}
 
 	.project-modal__panel {
+		/* Tighten the modal padding for small screens. */
 		padding: 18px 14px 24px;
+
+		/* Start the entrance animation a little lower on mobile. */
 		transform: translate3d(0, 36px, 0);
 	}
 
 	.project-modal__panel--board {
+		/* Keep the board variant flush to the edges. */
 		padding: 0;
 	}
 
 	.project-video-shell {
+		/* Let the video frame almost fill the viewport width on mobile. */
 		width: min(98vw, calc((100vh - 120px) * 16 / 9));
+
+		/* Soften the corners a little on small screens. */
 		border-radius: 12px;
 	}
 
 	.postit-board {
+		/* Let the board stretch to the full modal height. */
 		height: 100%;
 	}
 
 	.postit-note {
+		/* Increase the note size so it remains readable on small displays. */
 		width: min(44vw, 220px);
+
+		/* Keep the same tall note ratio. */
 		aspect-ratio: 9 / 16;
 	}
 
 	.postit-note--yellow {
+		/* Move the first note slightly to keep the arrangement balanced on mobile. */
 		left: 4%;
+
+		/* Bring it a bit closer to the top edge. */
 		top: 5%;
 	}
 
 	.postit-note--blue {
+		/* Shift the blue note to fit the narrower board. */
 		left: 10%;
+
+		/* Lower it to preserve spacing with the yellow note. */
 		top: 34%;
 	}
 
 	.postit-note--green {
+		/* Move the green note into the remaining open space. */
 		left: 18%;
+
+		/* Keep it lower so the three notes form a loose diagonal. */
 		top: 63%;
 	}
 
 	#skills {
+		/* Leave the skills section tall enough to feel like a full page on mobile. */
 		min-height: 100vh;
+
+		/* Remove side padding because the grid already needs as much width as possible. */
 		padding: 80px 0;
 	}
 
 	.skills-grid {
+		/* On tablets, the grid becomes two columns instead of three. */
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+
+		/* Shorten the cards slightly so the grid fits more comfortably. */
 		grid-auto-rows: 138px;
 	}
 
 	.skill-card {
+		/* Trim the inner spacing on smaller screens. */
 		padding: 6px 8px;
 	}
 
 	#earth-gif {
+		/* Let the Earth image take up a bit more width on mobile. */
 		width: min(92vw, 600px);
 	}
 
 	h1 {
+		/* Preserve a comfortable line-height for all h1 elements on smaller screens. */
 		line-height: 1.5;
 	}
 }
 
 @media screen and (max-width: 520px) {
+	/* This narrower breakpoint trims typography and spacing even further for small phones so the layout does not feel squeezed. */
+
+	/* Make the brand a little smaller for very narrow screens. */
 	.site-brand {
 		font-size: 0.78rem;
+
+		/* Reduce the tracking a little more so the label fits better. */
 		letter-spacing: 0.1em;
 	}
 
 	#site-header nav a,
 	#site-footer nav a {
+		/* Smaller navigation text keeps the bar usable on tiny screens. */
 		font-size: 0.82rem;
 	}
 
 	#site-header nav a + a::before,
 	#site-footer nav a + a::before {
+		/* Hide the divider completely because it gets too cramped at this width. */
 		display: none;
 	}
 
 	.hero-social-btn {
+		/* Shrink the social buttons so they fit comfortably in a row. */
 		width: 46px;
+
+		/* Match the smaller width with a smaller height. */
 		height: 46px;
 	}
 
 	.hero-social-icon {
+		/* Scale the SVG icon down with the button. */
 		width: 22px;
+
+		/* Keep the icon proportional to the button. */
 		height: 22px;
 	}
 
 	.skills-grid {
+		/* Collapse the skills grid to a single column on very narrow phones. */
 		grid-template-columns: 1fr;
+
+		/* Reduce the row height to keep the list compact. */
 		grid-auto-rows: 130px;
 	}
 
 	.skill-card {
+		/* Give the cards a minimum height that still feels balanced in the single-column layout. */
 		min-height: 130px;
 	}
 
 	.postit-note {
+		/* Notes are larger relative to the board on small phones so the videos remain legible. */
 		width: min(58vw, 220px);
 	}
 
 	.postit-note--yellow {
+		/* Slightly change the note positions so they still fit on the smaller board. */
 		left: 4%;
+
+		/* Tuck the note closer to the top edge. */
 		top: 4%;
 	}
 
 	.postit-note--blue {
+		/* Move the blue note farther right to avoid overlap. */
 		left: 36%;
+
+		/* Keep the blue note lower on the board. */
 		top: 28%;
 	}
 
 	.postit-note--green {
+		/* Pull the green note back to the left so the composition remains balanced. */
 		left: 12%;
+
+		/* Lower the green note to complete the staggered layout. */
 		top: 58%;
 	}
 }

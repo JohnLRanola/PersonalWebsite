@@ -1,112 +1,267 @@
+/* Skills section: this part contains the capability cards and the footer, which share the same dark glassy visual language as the header. */
 #skills {
+	/* The skills section is vertically centered and kept fairly narrow so the cards remain legible in a grid. */
 	width: min(860px, 84vw);
+
+	/* Give the section full-screen height so it reads like its own page segment. */
 	min-height: 100vh;
+
+	/* Center the section within the page. */
 	margin: 0 auto;
+
+	/* Add large top and bottom padding to separate the cards from the edges of the viewport. */
 	padding: 96px clamp(12px, 2vw, 28px) 80px;
+
+	/* Use the same light text as the rest of the page. */
 	color: #f7fff5;
+
+	/* Stack the heading and the grid vertically. */
 	display: flex;
+
+	/* Put the heading above the cards. */
 	flex-direction: column;
+
+	/* Keep the content vertically centered. */
 	justify-content: center;
+
+	/* The section itself stays transparent so the starry background shows through. */
 	background: transparent;
 }
 
 #site-footer {
+	/* The footer mirrors the header so the page feels framed from top to bottom. */
 	width: 100%;
+
+	/* Allow the footer to stretch across the full available width. */
 	max-width: 100%;
+
+	/* Include padding and border in the element's overall width. */
 	box-sizing: border-box;
+
+	/* Separate the footer from the section above it. */
 	margin: 42px 0 28px;
+
+	/* Give the footer comfortable space around its content. */
 	padding: 20px 16px;
+
+	/* Use flexbox so the text and links sit nicely on one line when there is room. */
 	display: flex;
+
+	/* Center items vertically. */
 	align-items: center;
+
+	/* Center the footer content horizontally. */
 	justify-content: center;
+
+	/* Center-align the footer text. */
 	text-align: center;
+
+	/* Add space between the copyright text and the links. */
 	gap: 14px;
+
+	/* Let the links wrap when space gets tight. */
 	flex-wrap: wrap;
+
+	/* Draw a subtle divider above the footer. */
 	border-top: 1px solid rgba(150, 225, 255, 0.2);
+
+	/* Footer text uses a slightly softer color than the main content. */
 	color: #cee8f3;
+
+	/* Keep the footer text roughly the same size as the navigation. */
 	font-size: 1rem;
+
+	/* Use a translucent dark panel so the footer still feels connected to the header. */
 	background: rgba(2, 11, 19, 0.55);
+
+	/* Blur the content behind the footer for a glass effect. */
 	backdrop-filter: blur(4px);
 }
 
 #site-footer p {
+	/* Remove the browser's default paragraph spacing. */
 	margin: 0;
 }
 
 #skills h2 {
+	/* Section title for the skills grid. It is kept large and centered so the card grid feels anchored beneath it. */
+
+	/* Remove default heading spacing. */
 	margin: 0 0 26px;
+
+	/* Center the title above the grid. */
 	text-align: center;
+
+	/* Make the title scale with the viewport. */
 	font-size: clamp(2rem, 5.4vw, 3.8rem);
+
+	/* Small spacing between letters gives the title more presence. */
 	letter-spacing: 0.02em;
+
+	/* Keep the title readable over the dark background. */
 	text-shadow: 0 6px 20px rgba(0, 0, 0, 0.38);
 }
 
 .skills-grid {
+	/* The skill cards are laid out in a responsive grid that tries to keep each category the same visual weight. */
+
+	/* Use CSS grid for the card layout. */
 	display: grid;
+
+	/* Create three equal columns on wider screens. */
 	grid-template-columns: repeat(3, minmax(0, 1fr));
+
+	/* Give each row a predictable height so cards line up cleanly. */
 	grid-auto-rows: 148px;
+
+	/* Separate the cards with a consistent gap. */
 	gap: 20px;
+
+	/* Let the grid shrink naturally if needed. */
 	min-height: 0;
+
+	/* Keep the grid aligned to the top of the section. */
 	align-content: start;
 }
 
 .skill-card {
+	/* Each card groups a category of skills. The dark translucent background keeps the block readable while staying inside the site’s overall palette. */
+
+	/* Fill the grid cell height. */
 	height: 100%;
+
+	/* Avoid minimum height constraints that could distort the grid. */
 	min-height: 0;
+
+	/* Add inner spacing so the title and list have room to breathe. */
 	padding: 9px 8px 7px;
+
+	/* Soft border keeps each card distinct from the background. */
 	border: 1px solid rgba(155, 235, 255, 0.24);
+
+	/* Round the card corners for a smoother look. */
 	border-radius: 10px;
+
+	/* Use a dark blue gradient to keep the card readable on the starry backdrop. */
 	background: linear-gradient(165deg, rgba(8, 22, 40, 0.88), rgba(9, 27, 45, 0.72));
+
+	/* Slight blur helps the card feel like a separate layer. */
 	backdrop-filter: blur(3px);
+
+	/* Small shadow lifts the card off the background. */
 	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+
+	/* Stack the title and list vertically. */
 	display: flex;
+
+	/* Keep the title above the list. */
 	flex-direction: column;
+
+	/* Anchor content to the top of the card. */
 	justify-content: flex-start;
+
+	/* Animate card movement and border changes smoothly. */
 	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skill-card.reveal-on-scroll {
+	/* Cards still use the reveal animation, but this rule keeps the hover and border transitions alongside it. */
+
+	/* Combine the fade-in animation with the card-specific transitions. */
 	transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skill-card:hover {
+	/* The card should not move, but it does get a stronger border and shadow when hovered. */
 	transform: none;
+
+	/* Brighten the border so the hovered card stands out. */
 	border-color: rgba(186, 255, 213, 0.58);
+
+	/* Deepen the shadow to reinforce the hover state. */
 	box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
 }
 
 .skill-card h3 {
+	/* The category title is uppercase and compact so the list underneath has more room. */
+
+	/* Remove default spacing. */
 	margin: 0 0 8px;
+
+	/* Keep the title small enough to fit on one line where possible. */
 	font-size: clamp(0.86rem, 1.15vw, 1.02rem);
+
+	/* Tight line-height keeps the heading compact. */
 	line-height: 1.15;
+
+	/* Tiny letter spacing gives the heading a crisp, technical feel. */
 	letter-spacing: 0.04em;
+
+	/* Strong weight makes the category label easy to scan. */
 	font-weight: 800;
+
+	/* Uppercase keeps the headings visually consistent. */
 	text-transform: uppercase;
+
+	/* Bright heading color contrasts with the dark card background. */
 	color: #e7fff3;
+
+	/* Soft glow helps the heading stand out slightly. */
 	text-shadow: 0 0 12px rgba(158, 255, 196, 0.28);
 }
 
 .skill-list {
+	/* The list removes default bullets and uses tighter spacing so multiple items can fit inside each card without looking crowded. */
+
+	/* Remove the browser's default list spacing. */
 	margin: 0;
+
+	/* Remove the default indent. */
 	padding: 0;
+
+	/* Hide bullet markers because we add our own. */
 	list-style: none;
+
+	/* Slightly smaller text helps the list fit into a fixed-height card. */
 	font-size: clamp(0.82rem, 0.95vw, 0.96rem);
+
+	/* Keep the lines compact but readable. */
 	line-height: 1.35;
+
+	/* Slightly bold text improves legibility. */
 	font-weight: 600;
+
+	/* Use a soft light color that still contrasts well. */
 	color: #f0f8ff;
+
+	/* The soft glow helps the list stay readable over the blurred card background. */
 	text-shadow: 0 0 8px rgba(123, 231, 255, 0.18);
 }
 
 .skill-list li {
+	/* Prevent the list item from wrapping awkwardly inside the fixed-height card. */
 	margin: 0;
+
+	/* Keep each skill on a single line where possible. */
 	white-space: nowrap;
+
+	/* Hide anything that would otherwise spill beyond the card width. */
 	overflow: hidden;
+
+	/* Replace long text with an ellipsis when needed. */
 	text-overflow: ellipsis;
 }
 
 .skill-list li::before {
+	/* The dash marker is used instead of a normal bullet to match the site’s minimal text-driven style. */
+
+	/* Add the custom bullet marker. */
 	content: '- ';
+
+	/* Use the accent green for the marker. */
 	color: #afffd1;
+
+	/* Make the marker a little heavier so it reads clearly. */
 	font-weight: 800;
 }
 
@@ -114,28 +269,44 @@
 .highlight-tech,
 .highlight-platform,
 .highlight-metric {
+	/* These spans are used inside paragraph text to highlight different kinds of information: skills, tools, platforms, and numeric results. */
+
+	/* Make the highlighted text stand out from the normal paragraph copy. */
 	font-weight: 800;
 }
 
 .highlight-skill {
+	/* Skill-related highlights use a mint green accent. */
 	color: #9effc4;
 }
 
 .highlight-tech {
+	/* Tool and technology names use a cyan accent. */
 	color: #7be7ff;
 }
 
 .highlight-platform {
+	/* Platform names use a warm yellow accent. */
 	color: #ffd787;
 }
 
 .highlight-metric {
+	/* Numbers and results use the site's neon green accent. */
 	color: #b6ff6a;
+
+	/* Slightly increase spacing to make metrics feel deliberate. */
 	letter-spacing: 0.02em;
 }
 
 #earth-gif {
+	/* The Earth image is sized responsively so it stays large enough to matter without causing horizontal overflow. */
+
+	/* Keep the visual width responsive. */
 	width: min(80vw, 600px);
+
+	/* Let the image keep its natural height ratio. */
 	height: auto;
+
+	/* Prevent the image from stretching awkwardly. */
 	object-fit: contain;
 }
