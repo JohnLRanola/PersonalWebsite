@@ -1,6 +1,11 @@
-:root { --scroll-progress: 0; }
+:root {
+	/* This custom property is updated by JavaScript on every scroll event and acts as the single shared value that powers the background fades, drift, and other scroll-linked effects. */
+	--scroll-progress: 0;
+}
 
+/* Background layers and stars: these rules build the visual sky behind the page content. The goal is to keep the background fixed to the viewport while the foreground sections scroll normally. */
 #space-dark {
+	/* This is the base black canvas of the scene. It stays fixed to the viewport so the page content can move over it without disturbing the background illusion. */
 	position: fixed;
 	inset: 0;
 	z-index: -3;
@@ -10,6 +15,7 @@
 }
 
 #space-dark::before {
+	/* This pseudo-element adds the colored nebula glow. Its opacity is tied to scroll progress, which makes the atmosphere gradually intensify as you move farther down the page. */
 	content: '';
 	position: absolute;
 	inset: 0;
@@ -18,25 +24,57 @@
 }
 
 .star {
+	/* Each star is positioned independently inside its parent container. */
 	position: absolute;
+
+	/* Uses the custom --x value to control the star's horizontal position. */
 	left: var(--x);
+
+	/* Uses the custom --y value to control the star's vertical position. */
 	top: var(--y);
+
+	/* --size controls the width and height, keeping the star perfectly square. */
 	width: var(--size);
 	height: var(--size);
+
+	/* Moves the star back by half of its own width and height so --x and --y point to the center instead of the top-left corner. */
 	transform: translate(-50%, -50%);
+
+	/* Rounds the star into a circle. */
 	border-radius: 999px;
+
+	/* Stars begin completely invisible until the flicker animation reveals them. */
 	opacity: 0;
+
+	/* Creates the glowing appearance of the star using a bright center and transparent outer edge. */
 	background: radial-gradient(circle, rgba(255, 246, 194, 1) 0%, rgba(255, 228, 129, 0.9) 52%, rgba(255, 213, 99, 0.22) 78%, transparent 100%);
+
+	/* Adds a soft golden glow around the star. */
 	filter: drop-shadow(0 0 8px rgba(255, 215, 100, 0.8));
+
+	/* Runs the starFlicker animation using the per-star duration variable. */
 	animation: starFlicker var(--dur) ease-in-out infinite;
+
+	/* Delays each star so they do not flicker in sync. */
 	animation-delay: var(--delay);
 }
 
 #stars-field {
+	/* Keeps the entire star field fixed to the screen. */
 	position: fixed;
+
+	/* Makes the star field fill the full viewport. */
 	inset: 0;
+
+	/* Keeps the star field behind the normal page content. */
 	z-index: -2;
+
+	/* Prevents the background layer from intercepting mouse or touch input. */
 	pointer-events: none;
+
+	/* Fades the stars out as scroll progress increases. */
 	opacity: calc(1 - (var(--scroll-progress) * 0.72));
+
+	/* Moves the field downward and scales it slightly as the user scrolls. */
 	transform: translateY(calc(var(--scroll-progress) * 120px)) scale(calc(1 + (var(--scroll-progress) * 0.08)));
 }
