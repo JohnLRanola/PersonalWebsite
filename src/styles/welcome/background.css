@@ -1,0 +1,42 @@
+:root { --scroll-progress: 0; }
+
+#space-dark {
+	position: fixed;
+	inset: 0;
+	z-index: -3;
+	background: #000;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+#space-dark::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at 50% 15%, #102040 0%, #040910 48%, #000 78%);
+	opacity: calc(var(--scroll-progress) * 0.92);
+}
+
+.star {
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: var(--size);
+	height: var(--size);
+	transform: translate(-50%, -50%);
+	border-radius: 999px;
+	opacity: 0;
+	background: radial-gradient(circle, rgba(255, 246, 194, 1) 0%, rgba(255, 228, 129, 0.9) 52%, rgba(255, 213, 99, 0.22) 78%, transparent 100%);
+	filter: drop-shadow(0 0 8px rgba(255, 215, 100, 0.8));
+	animation: starFlicker var(--dur) ease-in-out infinite;
+	animation-delay: var(--delay);
+}
+
+#stars-field {
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	opacity: calc(1 - (var(--scroll-progress) * 0.72));
+	transform: translateY(calc(var(--scroll-progress) * 120px)) scale(calc(1 + (var(--scroll-progress) * 0.08)));
+}

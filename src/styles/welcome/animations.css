@@ -1,0 +1,80 @@
+pre {
+	font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	font-weight: normal;
+	background: linear-gradient(14deg, #f8f8f8 0%, #3bf75b 50%, #5aff4b 100%);
+	background-size: 200% 200%;
+	background-position: 0% 50%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	margin: 0;
+	animation: titleGradientShift 3s ease-in-out infinite;
+}
+
+code {
+	display: inline-block;
+	padding: 10px 18px;
+	border-radius: 0;
+	border: 4px solid #111;
+	background: #6f63ff;
+	box-shadow: 4px 0 0 #111, 0 4px 0 #111, 8px 4px 0 rgba(0, 0, 0, 0.35);
+	clip-path: polygon(
+		0 4px, 4px 4px, 4px 0,
+		calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+		100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+		4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+	);
+	animation: titleFloat 2.4s ease-in-out infinite;
+}
+
+@keyframes titleGradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+@keyframes starFlicker {
+	0%, 100% { opacity: 0; }
+	20% { opacity: var(--alpha); }
+	58% { opacity: var(--alpha); }
+	82% { opacity: 0.24; }
+	92% { opacity: 0.08; }
+}
+
+@keyframes titleFloat {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	pre,
+	code,
+	#stars-field,
+	.star {
+		animation: none;
+	}
+
+	#stars-field {
+		transform: none;
+	}
+
+	.reveal-on-scroll,
+	.reveal-on-scroll.is-visible {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.project-modal,
+	.project-modal__panel,
+	.skill-card.reveal-on-scroll,
+	.skill-card.reveal-on-scroll.is-visible {
+		transition: none;
+	}
+
+	.project-modal__panel,
+	.project-modal.is-open .project-modal__panel {
+		opacity: 1;
+		transform: none;
+	}
+}
