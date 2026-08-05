@@ -1,6 +1,6 @@
-@import './welcome/background.css';
-@import './welcome/layout.css';
-@import './welcome/projects.css';
-@import './welcome/skills.css';
-@import './welcome/animations.css';
-@import './welcome/responsive.css';
+@import '/src/styles/welcome/background.css';
+@import '/src/styles/welcome/layout.css';
+@import '/src/styles/welcome/projects.css';
+@import '/src/styles/welcome/skills.css';
+@import '/src/styles/welcome/animations.css';
+@import '/src/styles/welcome/responsive.css';
